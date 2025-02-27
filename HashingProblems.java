@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * ***Walter Mikula /002 ***
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -40,8 +40,16 @@ class HashingProblems {
          * returning 0.0 is NOT correct, as that is not the average value. Whereas
          * returning 0.0/0.0 IS correct (which would return a non-number).
          */
+        int sum = 0;
+        int validCount = 0;
+        for (int i = 0; i < array.length; i++){
+            if (map.containsKey(array[i])){
+                sum += map.get(array[i]);
+                validCount++;
+            }
+        }
 
-         return 0.0 / 0.0;
+         return (double) sum / validCount;
   }
 
 
@@ -61,6 +69,13 @@ class HashingProblems {
        *
        * Hint: Consider iterating over the HashMap using the keySet method.
        */
+      Iterator<Integer> iterator = map.keySet().iterator();
+      while (iterator.hasNext()){
+          int key = iterator.next();
+          if (key % 2 == 1){
+              result.add(map.get(key));
+          }
+      }
 
 
       return result;
@@ -104,11 +119,22 @@ class HashingProblems {
    * NOTE: Solving using a HashMap or HashSet is fine (either is okay). HashSet may be easier to code?
    */
 
-  public int twoSums(int[] numbers, int k) {
-
-      /*
-       * ADD YOUR CODE HERE
-       */
+  public int twoSums(int[] numbers, int k){
+      HashSet<Integer> set = new HashSet<>();
+        int count = 0;
+        
+        for (int num: numbers) {
+            if (set.contains(num - k)) {
+                count++;
+            }
+            if (set.contains(num + k)) {
+                count++;
+            }
+            set.add(num);
+        }
+        
+        return count;
+    }
 
       return -1;
   }
